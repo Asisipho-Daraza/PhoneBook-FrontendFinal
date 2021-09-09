@@ -12,7 +12,7 @@ import { PhonebookService } from "src/app/services/phonebook.service";
 export class AllPhonebookEntriesComponent implements OnInit {
   fonebook: any = {};
   options: any[] = [];
-  book: any = [];
+  book: any = {};
   phonebookData: any;
 
   //dEFCLERATION
@@ -47,6 +47,7 @@ export class AllPhonebookEntriesComponent implements OnInit {
 
   submitPhoneBootEntry() {
     this.__phonebook.addNewPhonebook(this.phonebookForm.value);
+    window.location.reload();
   }
 
   load() {}
@@ -55,7 +56,8 @@ export class AllPhonebookEntriesComponent implements OnInit {
 
   searchPhonebookByNameOrNumber() {
     this.__phonebook.search(this.value).subscribe((results: any) => {
-      this.fonebook = results;
+      this.book = results;
+      // window.location.reload();
     });
   }
 
@@ -78,5 +80,11 @@ export class AllPhonebookEntriesComponent implements OnInit {
     localStorage.setItem("User", User);
 
     console.log(contact);
+  }
+
+  deletePhonebook() {
+    console.log(this.selected_contact.id);
+    this.__phonebook.deletePhonebook(this.selected_contact.id);
+    window.location.reload();
   }
 }

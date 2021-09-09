@@ -16,24 +16,27 @@
                 <span (click)="searchPhonebookByNameOrNumber()" class="icon text-primary"><i
                         class="fas fa-search"></i></span>
 
-                <h5 class="mt-2">Add New Contact</h5>
+
+                <form class="text-center border border-light p-5" [formGroup]="phonebookForm">
+
+                    <h5 class="mt-2">Add New Contact</h5>
 
 
-                <input onblur="validateName()" class="form-control mb-3 mt-3" placeholder="add name" id="userName">
-                <!-- <div id="nameAlert" class="alert alert-danger text-justify p-2 "></div> -->
-                <input onblur="validatePhone()" class="form-control mb-3" placeholder="add phone" id="userPhone">
-                <!-- <div id="phoneAlert" class="alert alert-danger text-justify p-2 ">Please add a valid number</div> -->
-                <input onblur="validateEmail()" class="form-control mb-3" placeholder="add e-mail" id="userEmail">
-                <!-- <div id="mailAlert" class="alert alert-danger text-justify p-2 ">Please add a valid e-mail</div> -->
+                    <input onblur="validateName()" class="form-control mb-3 mt-3" formControlName="name" placeholder="add name" id="userName">
+                    <!-- <div id="nameAlert" class="alert alert-danger text-justify p-2 "></div> -->
+                    <input onblur="validatePhone()" class="form-control mb-3" formControlName="phone" placeholder="add phone" id="userPhone">
+                    <!-- <div id="phoneAlert" class="alert alert-danger text-justify p-2 ">Please add a valid number</div> -->
+                    <input onblur="validateEmail()" class="form-control mb-3" formControlName="email" placeholder="add e-mail" id="userEmail">
+                    <!-- <div id="mailAlert" class="alert alert-danger text-justify p-2 ">Please add a valid e-mail</div> -->
 
-                <button class="btn btn-info w-100 btn1" type="submit" (click)="submitPhoneBootEntry()">Edit</button>
-
-                <!-- <button onclick="addContact()" class="btn btn-info w-100 btn1">Add</button> -->
-                <!-- <button class="btn btn-info w-100 btn1">Add</button> -->
+                    <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="submitPhoneBootEntry()">Add</button>
 
 
+                    <!-- <button onclick="addContact()" class="btn btn-info w-100 btn1">Add</button> -->
+                    <!-- <button class="btn btn-info w-100 btn1">Add</button> -->
 
-                <button class="btn btn-info w-100 btn1" type="submit" (click)="submitPhoneBootEntry()">Add</button>
+                </form>
+
 
             </div>
 
@@ -47,18 +50,26 @@
                         <th class="">Name</th>
                         <th class="">Phone</th>
                         <th class="">E-mail</th>
+                        <th class="">Delete?</th>
                         <th class="col-1"></th>
                         <th class="col-1"></th>
                     </thead>
 
                     <tbody id="tableBody">
 
-                        <tr *ngFor="let books of book" [class.selected]="books === selected_contact" (click)="onSelect(books)">
+                        <tr *ngFor="let books of book" [class.selected]="books === selected_contact" (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">
 
 
-                            <td [ngStyle]="{'background-color': books.name === this.fonebook[0].name ? 'green' : 'red'}" (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.name}}</td>
+                            <!-- <td [ngStyle]="{'background-color': books.name === this.fonebook[0].name ? 'green' : 'red'}" (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.name}}</td>
                             <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.phone}}</td>
-                            <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.email}}</td>
+                            <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.email}}</td> -->
+                            <td [ngStyle]="{'background-color': books.name === this.books.name }" (click)="onSelect(books.name)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.name}}</td>
+                            <td>{{books.phone}}</td>
+                            <td>{{books.email}}</td>
+                            <td><i (click)="deletePhonebook()" class="fas fa-trash" style="color:red"></i></td>
+
+                            <!-- <button (click)="deletePhonebook()" mdbBtn type="button" gradient="blue" rounded="true" mdbWavesEffect>Delete</button> -->
+
                         </tr>
 
                     </tbody>

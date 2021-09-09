@@ -26,6 +26,9 @@ export class UpdateComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
+  selected_contact?: any;
+  phonrbookToEdit: any;
+
   set_phonebook: any;
 
   ngOnInit() {
@@ -49,6 +52,19 @@ export class UpdateComponent implements OnInit {
     this.__phonebook.set_phonebook(this.phonebookData);
     localStorage.removeItem("User");
     this.router.navigate([`/update/${this.phonebookData.id}`]);
+  }
+
+  onSelect(contact: any): void {
+    this.selected_contact = contact;
+
+    this.__phonebook.setContact(this.selected_contact);
+    console.log(this.selected_contact);
+
+    this.phonrbookToEdit = this.selected_contact;
+    const User = JSON.stringify(contact);
+    localStorage.setItem("User", User);
+
+    console.log(contact);
   }
 
   goBack() {
@@ -77,5 +93,11 @@ export class UpdateComponent implements OnInit {
     // alert(
     //   "SUCCESS!! :-)\n\n" + JSON.stringify(this.phonebookForm.value, null, 4)
     // );
+  }
+
+  deletePhonebook() {
+    console.log(this.selected_contact.id);
+    this.__phonebook.deletePhonebook(this.selected_contact.id);
+    window.location.reload();
   }
 }
