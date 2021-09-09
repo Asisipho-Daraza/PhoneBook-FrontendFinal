@@ -12,8 +12,9 @@
 
             <div class="col-lg-4 inp">
 
-                <input onkeyup="search()" id="myInput" class="form-control mt-2" placeholder="search">
-                <span class="icon text-primary"><i class="fas fa-search"></i></span>
+                <input onkeyup="search()" id="myInput" class="form-control mt-2" [(ngModel)]="value" placeholder="search">
+                <span (click)="searchPhonebookByNameOrNumber()" class="icon text-primary"><i
+                        class="fas fa-search"></i></span>
 
                 <h5 class="mt-2">Add New Contact</h5>
 
@@ -25,13 +26,15 @@
                 <input onblur="validateEmail()" class="form-control mb-3" placeholder="add e-mail" id="userEmail">
                 <!-- <div id="mailAlert" class="alert alert-danger text-justify p-2 ">Please add a valid e-mail</div> -->
 
+                <button class="btn btn-info w-100 btn1" type="submit" (click)="submitPhoneBootEntry()">Edit</button>
+
                 <!-- <button onclick="addContact()" class="btn btn-info w-100 btn1">Add</button> -->
                 <!-- <button class="btn btn-info w-100 btn1">Add</button> -->
 
 
 
                 <button class="btn btn-info w-100 btn1" type="submit" (click)="submitPhoneBootEntry()">Add</button>
-                <button class="btn btn-info w-100 btn1" type="submit" (click)="submitPhoneBootEntry()">Edit</button>
+
             </div>
 
 
@@ -52,9 +55,10 @@
 
                         <tr *ngFor="let books of book" [class.selected]="books === selected_contact" (click)="onSelect(books)">
 
-                            <td>{{books.name}}</td>
-                            <td>{{books.phone}}</td>
-                            <td>{{books.email}}</td>
+
+                            <td [ngStyle]="{'background-color': books.name === this.fonebook[0].name ? 'green' : 'red'}" (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.name}}</td>
+                            <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.phone}}</td>
+                            <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.email}}</td>
                         </tr>
 
                     </tbody>

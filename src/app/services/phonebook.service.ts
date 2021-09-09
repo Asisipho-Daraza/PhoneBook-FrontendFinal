@@ -1,10 +1,7 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -14,7 +11,7 @@ export class PhonebookService {
 
   set_phonebook: any;
 
-  url = "http://localhost:7000/api/phonebook";
+  url = "http://localhost:8000/api/phonebook";
 
   addNewPhonebook(phonebook: any) {
     this.__http.post(`${this.url}`, phonebook).subscribe(
@@ -43,6 +40,7 @@ export class PhonebookService {
 
   //Search and filtering phonebook
   search(value: any) {
+    console.log(value);
     return this.__http.get(`${this.url}/search?s=${value}`);
   }
 
@@ -51,7 +49,10 @@ export class PhonebookService {
   }
 
   //Update product
-  // updateProduct() {
-  //   return this.__http.get(this.url);
-  // }
+  updateProduct(id: string, body: any) {
+    const updateUrl = `${this.url}/${id}`;
+    return this.__http
+      .put(updateUrl, body)
+      .subscribe((res) => console.log(res));
+  }
 }

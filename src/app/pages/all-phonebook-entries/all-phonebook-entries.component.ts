@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 import { PhonebookService } from "src/app/services/phonebook.service";
 
 @Component({
@@ -16,8 +17,10 @@ export class AllPhonebookEntriesComponent implements OnInit {
 
   //dEFCLERATION
 
-  phonrbookToEdit:any;
-
+  phonrbookToEdit: any;
+  subscription: Subscription;
+  message: string;
+  value: any;
   constructor(private __phonebook: PhonebookService, private router: Router) {}
 
   selected_contact?: any;
@@ -50,11 +53,12 @@ export class AllPhonebookEntriesComponent implements OnInit {
 
   //Search the phonebook by number or name
 
-  searchPhonebookByNameOrNumber(value: any) {
-    this.__phonebook.search(value).subscribe((results: any) => {
+  searchPhonebookByNameOrNumber() {
+    this.__phonebook.search(this.value).subscribe((results: any) => {
       this.fonebook = results;
     });
   }
+
   setOptions(option: string) {
     if (option.toLocaleLowerCase() === "all") return this.load();
 
@@ -62,6 +66,7 @@ export class AllPhonebookEntriesComponent implements OnInit {
       this.fonebook = results;
     });
   }
+
   onSelect(contact: any): void {
     this.selected_contact = contact;
 
@@ -69,6 +74,9 @@ export class AllPhonebookEntriesComponent implements OnInit {
     console.log(this.selected_contact);
 
     this.phonrbookToEdit = this.selected_contact;
-    
+    const User = JSON.stringify(contact);
+    localStorage.setItem("User", User);
+
+    console.log(contact);
   }
 }

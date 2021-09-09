@@ -44,17 +44,32 @@
 </div> -->
 
 <div class="container">
-    <a routerLink="/">Back Home</a>
-    <!-- Default form login -->
-    <!-- <form class="text-center border border-light p-5" [formGroup]="phonebookForm"> -->
-    <p class="h4 mb-4">New Phonebook Entry</p>
 
-    <input type="text" class="form-control mb-4" formControlName="name" placeholder="Name">
-    <input type="number" class="form-control mb-4" formControlName="phone" placeholder="Phone">
-    <input type="email" class="form-control mb-4" formControlName="email" placeholder="Email">
 
-    <!-- Sign in button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">Update</button>
-    <!-- </form> -->
-    <!-- Default form login -->
+    <div class="row">
+
+        <a class="pl-3" (click)="goBack()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+        </a>
+
+
+        <p class="h4 mb-4 pl-5">New Phonebook Entry</p>
+
+    </div>
+
+    <form formGroup="phonebookForm" (ngSubmit)="onSubmit()">
+
+        <input type="text" class="form-control mb-4" formControlName="name" placeholder={{name}}>
+        <input type="number" class="form-control mb-4" formControlName="phone" placeholder={{phone}}>
+        <input type="email" class="form-control mb-4" formControlName="email" placeholder={{email}}>
+
+
+        <button mdbBtn color="info" block="true" class="my-4" type="submit">Update</button>
+        <!-- (click)="updatePhonebook()" -->
+
+    </form>
+
 </div>

@@ -10,7 +10,7 @@ const routes: Routes = [
 
   { path: "phonebook-entry", component: NewPhonebookEntryComponent },
   { path: "", component: AllPhonebookEntriesComponent },
-  { path: "", component: UpdateComponent },
+  { path: "update", component: UpdateComponent },
 ];
 
 @NgModule({
