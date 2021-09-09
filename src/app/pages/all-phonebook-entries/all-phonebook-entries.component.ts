@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { PhonebookService } from "src/app/services/phonebook.service";
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 @Component({
   selector: "app-all-phonebook-entries",
@@ -57,7 +58,7 @@ export class AllPhonebookEntriesComponent implements OnInit {
   searchPhonebookByNameOrNumber() {
     this.__phonebook.search(this.value).subscribe((results: any) => {
       this.book = results;
-      // window.location.reload();
+      window.location.reload();
     });
   }
 
