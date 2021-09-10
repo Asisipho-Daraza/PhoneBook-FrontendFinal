@@ -50,23 +50,25 @@
                         <th class="">Name</th>
                         <th class="">Phone</th>
                         <th class="">E-mail</th>
-                        <th class="">Delete?</th>
+                        <th class=""></th>
+
                         <th class="col-1"></th>
                         <th class="col-1"></th>
                     </thead>
 
                     <tbody id="tableBody">
 
-                        <tr *ngFor="let books of book" [class.selected]="books === selected_contact" (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">
+                        <tr *ngFor="let books of book" [class.selected]="books === selected_contact" (click)="onSelect(books)">
 
 
                             <!-- <td [ngStyle]="{'background-color': books.name === this.fonebook[0].name ? 'green' : 'red'}" (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.name}}</td>
                             <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.phone}}</td>
                             <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.email}}</td> -->
-                            <td [ngStyle]="{'background-color': books.name === this.books.name }" (click)="onSelect(books.name)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.name}}</td>
+                            <td [ngStyle]="{'background-color': books.name === this.books.name }">{{books.name}}</td>
                             <td>{{books.phone}}</td>
                             <td>{{books.email}}</td>
                             <td><i (click)="deletePhonebook()" class="fas fa-trash" style="color:red"></i></td>
+                            <td><i (click)="onSelect(books.name)" [routerLink]="['/update']" routerLinkActive="router-link-active" class="far fa-edit"></i></td>
 
                             <!-- <button (click)="deletePhonebook()" mdbBtn type="button" gradient="blue" rounded="true" mdbWavesEffect>Delete</button> -->
 

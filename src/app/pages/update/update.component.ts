@@ -26,10 +26,12 @@ export class UpdateComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
+  //Declerations
+
   selected_contact?: any;
   phonrbookToEdit: any;
-
   set_phonebook: any;
+  bookToUpdate: any = {};
 
   ngOnInit() {
     this.onSubmit();
@@ -47,12 +49,14 @@ export class UpdateComponent implements OnInit {
     this.email = obj.email;
   }
 
-  updatePhonebook(id: string, body: any) {
-    console.log(this.phonebookForm.value);
-    this.__phonebook.set_phonebook(this.phonebookData);
-    localStorage.removeItem("User");
-    this.router.navigate([`/update/${this.phonebookData.id}`]);
-  }
+  // updatePhonebook(id: string, body: any) {
+  //   console.log(this.phonebookForm.value);
+  //   this.__phonebook.set_phonebook(this.phonebookData);
+  //   localStorage.removeItem("User");
+  //   this.router.navigate([`/update/${this.phonebookData.id}`]);
+  // }
+
+  updatePhonebook() {}
 
   onSelect(contact: any): void {
     this.selected_contact = contact;

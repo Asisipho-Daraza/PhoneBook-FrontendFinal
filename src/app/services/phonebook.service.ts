@@ -19,7 +19,7 @@ export class PhonebookService {
 
   set_phonebook: any;
 
-  url = "http://localhost:8000/api/phonebook";
+  url = "http://localhost:5000/api/phonebook";
 
   addNewPhonebook(phonebook: any) {
     this.__http.post(`${this.url}`, phonebook).subscribe(
