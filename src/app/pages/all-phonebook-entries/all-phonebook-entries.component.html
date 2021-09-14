@@ -1,0 +1,100 @@
+<html>
+
+<body>
+
+    <div class="jumbotron jum">
+
+        <div class=" navbar">
+            <h3>Phone Book <i class="far fa-address-book"></i></h3>
+
+        </div>
+        <div class="row">
+
+            <div class="col-lg-4 inp">
+
+                <input onkeyup="search()" id="myInput" class="form-control mt-2" [(ngModel)]="value" placeholder="search">
+                <span (click)="searchPhonebookByNameOrNumber()" class="icon text-primary"><i
+                        class="fas fa-search"></i></span>
+
+
+                <form class="text-center border border-light p-5" [formGroup]="phonebookForm">
+
+                    <h5 class="mt-2">Add New Contact</h5>
+
+
+                    <input onblur="validateName()" class="form-control mb-3 mt-3" formControlName="name" placeholder="add name" id="userName">
+                    <!-- <div id="nameAlert" class="alert alert-danger text-justify p-2 "></div> -->
+                    <input onblur="validatePhone()" class="form-control mb-3" formControlName="phone" placeholder="add phone" id="userPhone">
+                    <!-- <div id="phoneAlert" class="alert alert-danger text-justify p-2 ">Please add a valid number</div> -->
+                    <input onblur="validateEmail()" class="form-control mb-3" formControlName="email" placeholder="add e-mail" id="userEmail">
+                    <!-- <div id="mailAlert" class="alert alert-danger text-justify p-2 ">Please add a valid e-mail</div> -->
+
+                    <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="submitPhoneBootEntry()">Add</button>
+
+
+                    <!-- <button onclick="addContact()" class="btn btn-info w-100 btn1">Add</button> -->
+                    <!-- <button class="btn btn-info w-100 btn1">Add</button> -->
+
+                </form>
+
+
+            </div>
+
+
+            <div class="col-lg-8">
+
+                <table id="myTable" class="table text-justify table-striped">
+
+
+                    <thead class="tableh1">
+                        <th class="">Name</th>
+                        <th class="">Phone</th>
+                        <th class="">E-mail</th>
+                        <th class=""></th>
+
+                        <th class="col-1"></th>
+                        <th class="col-1"></th>
+                    </thead>
+
+                    <tbody id="tableBody">
+
+                        <tr *ngFor="let books of book" [class.selected]="books === selected_contact" (click)="onSelect(books)">
+
+
+                            <!-- <td [ngStyle]="{'background-color': books.name === this.fonebook[0].name ? 'green' : 'red'}" (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.name}}</td>
+                            <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.phone}}</td>
+                            <td (click)="onSelect(books)" [routerLink]="['/update']" routerLinkActive="router-link-active">{{books.email}}</td> -->
+                            <td [ngStyle]="{'background-color': books.name === this.books.name }">{{books.name}}</td>
+                            <td>{{books.phone}}</td>
+                            <td>{{books.email}}</td>
+                            <td><i (click)="deletePhonebook()" class="fas fa-trash" style="color:red"></i></td>
+                            <td><i (click)="onSelect(books.name)" [routerLink]="['/update']" routerLinkActive="router-link-active" class="far fa-edit"></i></td>
+
+                            <!-- <button (click)="deletePhonebook()" mdbBtn type="button" gradient="blue" rounded="true" mdbWavesEffect>Delete</button> -->
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="text-center">Asisipho Daraza limited.</footer>
+</body>
+
+</html>
+
+<!-- <a routerLink="/phonebook-entry">Add new phonebook entry</a> -->
+
+
+<!-- <div class="todo-controls-box" appToolTipSingleton (click)="$event.stopPropagation()">
+    <div class="todo-control-button" appToolTip="Edit Todo" (click)="onEditClicked()">
+        <i class="material-icons">edit</i>
+    </div> -->
+
+<!-- onEditClicked() {
+        this.editClicked.emit()
+      } -->
