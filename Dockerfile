@@ -1,10 +1,10 @@
-FROM node:14.11.0-alpine3.10
+FROM node:14.15.0-alpine3.10
 
 WORKDIR /app
 
 COPY . .
 
-RUN npm i -g @angular/cli@11.2.1
+RUN npm i -g @angular/cli@12.2.4
 RUN npm install -g json-server
 
 RUN npm i
