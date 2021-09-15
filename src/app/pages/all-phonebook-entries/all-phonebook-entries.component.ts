@@ -14,6 +14,7 @@ export class AllPhonebookEntriesComponent implements OnInit {
   options: any[] = [];
   book: any = {};
   phonebookData: any;
+  deleteMw: any;
 
   //dEFCLERATION
 
