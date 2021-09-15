@@ -19,7 +19,7 @@ export class PhonebookService {
 
   set_phonebook: any;
 
-  url = "http://localhost:5000/api/phonebook";
+  url = "https://asisipho-phonebook-api.herokuapp.com/api/phonebook";
 
   addNewPhonebook(phonebook: any) {
     this.__http.post(`${this.url}`, phonebook).subscribe(
